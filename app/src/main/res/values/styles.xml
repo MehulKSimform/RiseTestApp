@@ -1,0 +1,29 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TextViewRingsideCompressedBlackTd" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textSize">@dimen/_15ssp</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/base_bg_dark</item>
+        <item name="colorAccent">@color/base_title_color</item>
+        <item name="android:textColorPrimary">@color/base_title_color</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+    </style>
+
+    <style name="ButtonStyle" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textColor">@color/bg_card</item>
+        <item name="android:fontFamily">@font/circularstd_book</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="background">@color/color_white</item>
+    </style>
+
+</resources>

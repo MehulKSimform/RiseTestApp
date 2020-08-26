@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FFFFFF</color>
+
+    <color name="text_color_black">#000000</color>
+    <color name="color_white">#FFFFFF</color>
+
+    <color name="base_bg_dark">#17191a</color>
+    <color name="base_title_color">#FFFFFF</color>
+
+    <color name="form_default_border">#006CFF</color>
+    <color name="record_background">#ff282828</color>
+    <color name="record_button">#ffef1a27</color>
+    <color name="base_color_red">#FF0021</color>
+    <color name="bg_card">#0C2F87 </color>
+</resources>

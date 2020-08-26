@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">RiseTestApp</string>
+
+    <!--Connect Headphone-->
+    <string name="txt_connect_headphone">Connect Headphone</string>
+    <string name="txt_scan">Scan</string>
+    <string name="txt_scan_stop">Stop</string>
+    <string name="txt_device_paired">Device paired successfully..</string>
+    <string name="txt_device_already_paired">Device already paired..</string>
+
+    <!--Common error message-->
+    <string name="error_internet_connection">No Internet Connection available. Please try again.</string>
+    <string name="txt_err_permission_required_message">Permission required for this operation</string>
+    <string name="txt_err_permission_required_title">Permission required</string>
+    <string name="txt_give_permission">Give permission</string>
+    <string name="action_done">Done</string>
+
+</resources>

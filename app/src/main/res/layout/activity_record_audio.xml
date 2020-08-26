@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/record_background"
+    android:fitsSystemWindows="true"
+    tools:context=".view.activity.RecordAudioActivity"
+    tools:ignore="RtlHardcoded,ContentDescription,NestedWeights,RtlSymmetry">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/record_background"
+        android:fitsSystemWindows="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="0dip"
+                android:layout_weight="7"
+                android:scaleType="fitEnd"
+                android:src="@drawable/ra_tape"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dip"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="5"
+                android:paddingBottom="85dip"
+                android:paddingTop="30dip">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/record_timer_sc"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.45"
+                    android:gravity="right|top"
+                    android:textColor="@color/form_default_border"
+                    android:textSize="@dimen/_15ssp"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/record_timer_ms"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:paddingLeft="4dip"
+                    android:textColor="@color/form_default_border"
+                    android:textSize="@dimen/_15ssp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/record_button"
+            android:layout_width="65dip"
+            android:layout_height="65dip"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dip"
+            android:background="@drawable/ra_button_background"
+            android:src="@drawable/ra_button_stopped"/>
+
+        <ImageView
+            android:id="@+id/record_play"
+            android:layout_width="65dip"
+            android:layout_height="65dip"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dip"
+            android:visibility="gone"
+            android:background="@drawable/ra_button_background"
+            android:src="@drawable/ic_play"/>
+
+    </RelativeLayout>
+
+</FrameLayout>
