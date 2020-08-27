@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
     implementation 'com.github.douglasjunior.AndroidBluetoothLibrary:BluetoothClassicLibrary:0.3.5'
+    implementation 'com.google.android.exoplayer:exoplayer:2.11.8'
     implementation 'com.karumi:dexter:6.0.0'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
