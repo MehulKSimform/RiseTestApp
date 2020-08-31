@@ -2,25 +2,12 @@ package com.simform.risetestapp.view.activity
 
 import android.graphics.Color
 import android.net.Uri
-import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.google.android.exoplayer2.ExoPlaybackException
-import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.PlaybackParameters
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.Player.REPEAT_MODE_ALL
-import com.google.android.exoplayer2.Player.REPEAT_MODE_OFF
-import com.google.android.exoplayer2.Player.REPEAT_MODE_ONE
-import com.google.android.exoplayer2.Player.STATE_BUFFERING
-import com.google.android.exoplayer2.Player.STATE_ENDED
-import com.google.android.exoplayer2.Player.STATE_IDLE
-import com.google.android.exoplayer2.Player.STATE_READY
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.Timeline
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
-import com.google.android.exoplayer2.source.ExtractorMediaSource
+import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.Player.*
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.TrackGroupArray
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray
@@ -31,9 +18,7 @@ import com.simform.risetestapp.R
 import com.simform.risetestapp.base.BaseActivity
 import com.simform.risetestapp.databinding.ActivityPlayVideoBinding
 import com.simform.risetestapp.util.extention.ActivityExtensions.toast
-import kotlinx.android.synthetic.main.activity_play_video.btnChangeRepeatMode
-import kotlinx.android.synthetic.main.activity_play_video.playerView
-import kotlinx.android.synthetic.main.activity_play_video.progressBar
+import kotlinx.android.synthetic.main.activity_play_video.*
 
 class PlayVideoActivity : BaseActivity<ActivityPlayVideoBinding>() {
 
@@ -51,11 +36,18 @@ class PlayVideoActivity : BaseActivity<ActivityPlayVideoBinding>() {
 
     private fun initializePlayer() {
 
-        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(this)
+        // simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(this)
+        simpleExoPlayer = SimpleExoPlayer.Builder(this).build()
 
-        mediaDataSourceFactory = DefaultDataSourceFactory(this, Util.getUserAgent(this, "mediaPlayerSample"))
+        mediaDataSourceFactory =
+            DefaultDataSourceFactory(this, Util.getUserAgent(this, "mediaPlayerSample"))
 
-        val mediaSource = ProgressiveMediaSource.Factory(mediaDataSourceFactory).createMediaSource(Uri.parse("file:///android_asset/Ocean_waves_with_reflection_of_sun.mp4"))
+        val mediaSource = ProgressiveMediaSource.Factory(mediaDataSourceFactory)
+            .createMediaSource(Uri.parse("file:///android_asset/Ocean_waves_with_reflection_of_sun.mp4"))
+        /*val mediaSource: MediaSource = HlsMediaSource(
+            Uri.parse("file:///android_asset/Ocean_waves_with_reflection_of_sun.mp4"),
+            mediaDataSourceFactory, mainHandler, null
+        )*/
         //val mediaSource = ExtractorMediaSource(Uri.parse("file:///android_asset/Ocean_waves_with_reflection_of_sun.mp4"), mediaDataSourceFactory, DefaultExtractorsFactory(), null, null)
 
         simpleExoPlayer.prepare(mediaSource, false, false)
@@ -67,12 +59,14 @@ class PlayVideoActivity : BaseActivity<ActivityPlayVideoBinding>() {
 
         /** Default repeat mode is REPEAT_MODE_OFF */
         btnChangeRepeatMode.setOnClickListener {
-            if (simpleExoPlayer.repeatMode == REPEAT_MODE_OFF)
-                simpleExoPlayer.repeatMode = REPEAT_MODE_ONE
-            else if (simpleExoPlayer.repeatMode == REPEAT_MODE_ONE) {
-                simpleExoPlayer.repeatMode = REPEAT_MODE_ALL
-            } else {
-                simpleExoPlayer.repeatMode = REPEAT_MODE_OFF
+            when (simpleExoPlayer.repeatMode) {
+                REPEAT_MODE_OFF -> simpleExoPlayer.repeatMode = REPEAT_MODE_ONE
+                REPEAT_MODE_ONE -> {
+                    simpleExoPlayer.repeatMode = REPEAT_MODE_ALL
+                }
+                else -> {
+                    simpleExoPlayer.repeatMode = REPEAT_MODE_OFF
+                }
             }
         }
 
@@ -83,7 +77,10 @@ class PlayVideoActivity : BaseActivity<ActivityPlayVideoBinding>() {
                 Log.d(TAG, "onPlaybackParametersChanged: ")
             }
 
-            override fun onTracksChanged(trackGroups: TrackGroupArray, trackSelections: TrackSelectionArray) {
+            override fun onTracksChanged(
+                trackGroups: TrackGroupArray,
+                trackSelections: TrackSelectionArray
+            ) {
                 Log.d(TAG, "onTracksChanged: ")
             }
 
@@ -135,6 +132,9 @@ class PlayVideoActivity : BaseActivity<ActivityPlayVideoBinding>() {
     }
 
     private fun releasePlayer() {
+        simpleExoPlayer.playWhenReady = false
+        simpleExoPlayer.stop(true)
+        simpleExoPlayer.setVideoSurface(null)
         simpleExoPlayer.release()
     }
 
